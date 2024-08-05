@@ -1,12 +1,19 @@
 
 
+using Amazon.Runtime;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 
 // Configure AWS options
-builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+var awsOptions = builder.Configuration.GetAWSOptions();
+awsOptions.Credentials = new BasicAWSCredentials(
+    builder.Configuration["AWS:AccessKey"],
+    builder.Configuration["AWS:SecretKey"]
+);
+builder.Services.AddDefaultAWSOptions(awsOptions);
 builder.Services.AddAWSService<IAmazonDynamoDB>();
 builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
 
