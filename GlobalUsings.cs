@@ -1,8 +1,8 @@
+global using Amazon.DynamoDBv2;
+global using Amazon.DynamoDBv2.DataModel;
+global using PersonalBlog.Interfaces;
+global using PersonalBlog.Models;
+global using PersonalBlog.Strategies;
 global using System;
 global using System.Collections.Generic;
-global using System.Linq;
 global using System.Threading.Tasks;
-global using Amazon.DynamoDBv2;
-global using Amazon.Extensions.NETCore.Setup;
-global using PersonalBlog.Models;
-global using PersonalBlog.Interfaces;

@@ -1,6 +1,5 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using PersonalBlog.Models;
+using System.Diagnostics;
 
 namespace PersonalBlog.Controllers;
 
@@ -20,7 +19,7 @@ public class HomeController : Controller
     {
         if (!ModelState.IsValid)
         {
-            ModelState.AddModelError("Validation","Please provide all values");
+            ModelState.AddModelError("Validation", "Please provide all values");
         }
         return View(model);
     }
@@ -31,9 +30,10 @@ public class HomeController : Controller
         await _dataService.Create(model);
         return RedirectToAction("Index");
     }
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        return View();
+        var posts = await _dataService.GetAll();
+        return View(posts);
     }
 
     public IActionResult Privacy()

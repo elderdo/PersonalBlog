@@ -1,14 +1,19 @@
-using PersonalBlog.Strategies;
+
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDefaultAWSOptions(Configuration.GetAWSOptions());
-    services.AddAWSService<IAmazonDynamoDB>();
-builder.Services.AddSingleton<IDynamoDBContext,DynamoDBContext>();
-builder.Services.AddSingleton<IHttpContextAccessor,HttpContextAccessor>();
-builder.Services.AddScoped<IAuthorizer,IpBasedAuthorizer>();
+
+// Configure AWS options
+builder.Services.AddDefaultAWSOptions(builder.Configuration.GetAWSOptions());
+builder.Services.AddAWSService<IAmazonDynamoDB>();
+builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
+
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddScoped<IAuthorizer, IpBasedAuthorizer>();
+builder.Services.AddScoped<IDataService, DynamoDbDataService>();
+
 
 var app = builder.Build();
 

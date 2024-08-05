@@ -1,10 +1,12 @@
+
+
 namespace PersonalBlog.Models;
-[DynamoDBTable(tableName:"blog")]
-public class Post 
+[DynamoDBTable(tableName: "blog")]
+public class Post
 {
     public Post()
     {
-       Id = Guid.NewGuid().ToString(); 
+        Id = Guid.NewGuid().ToString();
     }
 
     public string Id { get; set; }
