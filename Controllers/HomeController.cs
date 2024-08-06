@@ -15,6 +15,7 @@ public class HomeController : Controller
     }
     [Route("Post")]
     [HttpGet]
+    [ServiceFilter(typeof(ProtectorAttribute))]
     public async Task<IActionResult> CreatePost(Post model)
     {
         if (!ModelState.IsValid)

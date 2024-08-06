@@ -19,6 +19,8 @@ builder.Services.AddSingleton<IDynamoDBContext, DynamoDBContext>();
 
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddScoped<IAuthorizer, IpBasedAuthorizer>();
+builder.Services.AddScoped<ProtectorAttribute>();
+builder.AddLogging(c => c.AddConsole());
 builder.Services.AddScoped<IDataService, DynamoDbDataService>();
 
 
